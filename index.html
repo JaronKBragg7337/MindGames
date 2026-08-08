@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Enter live worlds nested inside other worlds in this mobile-first Three.js experiment."
+    />
+    <meta name="theme-color" content="#05090d" />
+    <title>MindGames — Recursive Reality</title>
+  </head>
+  <body>
+    <main id="experience" aria-label="Recursive Reality interactive experience">
+      <div id="viewport" aria-hidden="true"></div>
+
+      <section id="boot" class="boot" aria-labelledby="boot-title">
+        <div class="boot__scan"></div>
+        <div class="boot__content">
+          <p class="eyebrow">MINDGAMES / EXPERIMENT 001</p>
+          <h1 id="boot-title">Recursive<br />Reality</h1>
+          <p class="boot__copy">
+            The screen is live. The room behind it is real.<br />Do not trust the container.
+          </p>
+          <div class="boot__meter" aria-hidden="true"><span id="load-meter"></span></div>
+          <p id="load-status" class="boot__status" role="status">Calibrating spatial layers…</p>
+          <button id="enter" class="enter" type="button" disabled>
+            <span>Enter experiment</span>
+            <small>Tap for audio + controls</small>
+          </button>
+          <p class="orientation-note">Landscape recommended · portrait supported</p>
+        </div>
+      </section>
+
+      <section id="hud" class="hud is-hidden" aria-label="Experiment status">
+        <div class="hud__top">
+          <div class="world-readout">
+            <span class="world-readout__kicker">CURRENT REALITY</span>
+            <strong id="world-name">ORIGIN LAB</strong>
+            <span id="world-rules">1.0× TIME · DOWN GRAVITY</span>
+          </div>
+          <div class="depth-readout" aria-label="Recursion depth">
+            <span>DEPTH</span>
+            <strong id="depth-value">00</strong>
+          </div>
+        </div>
+
+        <div id="crosshair" class="crosshair" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+
+        <div id="message" class="message" role="status"></div>
+        <div id="desktop-hint" class="desktop-hint">WASD MOVE · MOUSE LOOK · E USE</div>
+
+        <div id="joystick" class="joystick" aria-hidden="true">
+          <div class="joystick__ring"></div>
+          <div id="joystick-knob" class="joystick__knob"></div>
+        </div>
+
+        <button id="action" class="action is-hidden" type="button">
+          <span id="action-icon">↳</span>
+          <strong id="action-label">USE</strong>
+        </button>
+
+        <div class="look-zone-label" aria-hidden="true">DRAG TO LOOK</div>
+      </section>
+
+      <aside id="rotate-hint" class="rotate-hint" aria-hidden="true">
+        <span>↻</span> Rotate for the widest view
+      </aside>
+
+      <div id="fatal" class="fatal is-hidden" role="alert">
+        <strong>Reality renderer interrupted.</strong>
+        <span id="fatal-detail">Reload to recalibrate.</span>
+      </div>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+

@@ -1,0 +1,30 @@
+{
+  "name": "mindgames-recursive-reality",
+  "version": "0.1.0",
+  "private": false,
+  "description": "A mobile-first Three.js recursive reality experiment.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "assets": "node scripts/fetch-cc0-assets.mjs",
+    "validate:assets": "node scripts/fetch-cc0-assets.mjs --check",
+    "validate:world": "tsx scripts/validate-world.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "vite build",
+    "check": "npm run validate:assets && npm run validate:world && npm run typecheck && npm run build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "three": "0.185.1"
+  },
+  "devDependencies": {
+    "@types/three": "0.185.4",
+    "tsx": "4.23.11",
+    "typescript": "7.0.2",
+    "vite": "8.2.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
+

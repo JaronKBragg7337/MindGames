@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "license": "CC0-1.0",
+  "licenseUrl": "https://polyhaven.com/license",
+  "assets": [
+    {
+      "id": "concrete_floor_01",
+      "label": "Concrete Floor 01",
+      "authors": ["Rob Tuytel"],
+      "source": "https://polyhaven.com/a/concrete_floor_01",
+      "physicalWidthMeters": 2,
+      "maps": {
+        "color": {
+          "file": "concrete_floor_01_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_floor_01/concrete_floor_01_diff_1k.jpg",
+          "md5": "187065cfc20a35eb421eac6d4f38c58f"
+        },
+        "normal": {
+          "file": "concrete_floor_01_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_floor_01/concrete_floor_01_nor_gl_1k.jpg",
+          "md5": "3862d48eb9495b302652cac825738876"
+        },
+        "arm": {
+          "file": "concrete_floor_01_arm_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_floor_01/concrete_floor_01_arm_1k.jpg",
+          "md5": "146fe392b094a93768ba67216ea025d1"
+        }
+      }
+    },
+    {
+      "id": "metal_plate",
+      "label": "Metal Plate",
+      "authors": ["Rob Tuytel"],
+      "source": "https://polyhaven.com/a/metal_plate",
+      "physicalWidthMeters": 0.5,
+      "maps": {
+        "color": {
+          "file": "metal_plate_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/metal_plate/metal_plate_diff_1k.jpg",
+          "md5": "bd9daf4c04046ca392a38b8df955ed26"
+        },
+        "normal": {
+          "file": "metal_plate_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/metal_plate/metal_plate_nor_gl_1k.jpg",
+          "md5": "d379e66130ad6ccff217ac9b13de935d"
+        },
+        "arm": {
+          "file": "metal_plate_arm_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/metal_plate/metal_plate_arm_1k.jpg",
+          "md5": "13f064ffa4863a4170d902f675eb022e"
+        }
+      }
+    },
+    {
+      "id": "painted_brick",
+      "label": "Painted Brick",
+      "authors": ["Amal Kumar"],
+      "source": "https://polyhaven.com/a/painted_brick",
+      "physicalWidthMeters": 1.8,
+      "maps": {
+        "color": {
+          "file": "painted_brick_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/painted_brick/painted_brick_diff_1k.jpg",
+          "md5": "f9254726fbcf32a5c56db7c6c883ef49"
+        },
+        "normal": {
+          "file": "painted_brick_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/painted_brick/painted_brick_nor_gl_1k.jpg",
+          "md5": "74ee4b06d0e671d2c2becf711aa100d1"
+        },
+        "arm": {
+          "file": "painted_brick_arm_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/painted_brick/painted_brick_arm_1k.jpg",
+          "md5": "63d4dfa3101b9c886a5e618ca5bb9980"
+        }
+      }
+    },
+    {
+      "id": "wood_table_worn",
+      "label": "Wood Table Worn",
+      "authors": ["Dimitrios Savva", "Rico Cilliers"],
+      "source": "https://polyhaven.com/a/wood_table_worn",
+      "physicalWidthMeters": 0.55,
+      "maps": {
+        "color": {
+          "file": "wood_table_worn_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_table_worn/wood_table_worn_diff_1k.jpg",
+          "md5": "8c71f701f70fef34b87fb7c8742ad0a5"
+        },
+        "normal": {
+          "file": "wood_table_worn_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_table_worn/wood_table_worn_nor_gl_1k.jpg",
+          "md5": "d8e76d135e94e32bc81eedb3342c7614"
+        },
+        "arm": {
+          "file": "wood_table_worn_arm_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_table_worn/wood_table_worn_arm_1k.jpg",
+          "md5": "337f3d8c644bfb190f9f30aad0689163"
+        }
+      }
+    }
+  ]
+}
+
