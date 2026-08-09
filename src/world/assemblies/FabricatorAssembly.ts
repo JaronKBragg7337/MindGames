@@ -352,7 +352,9 @@ export class FabricatorAssembly {
       accent: config.accent,
       subtext: '1005 CUBE / PEX2 DUAL',
     });
-    consoleDisplay.position.set(-0.025, 0, 0.084);
+    // Keep the decal physically above the glass so mobile depth precision
+    // cannot erase its lettering at shallow viewing angles.
+    consoleDisplay.position.set(-0.025, 0, 0.092);
     consoleRoot.add(consoleDisplay);
     addCylinder(consoleRoot, 0.052, 0.035, warningMaterial, [0.205, -0.085, 0.075], [Math.PI * 0.5, 0, 0], 16);
     consoleRoot.add(createFasteners([
