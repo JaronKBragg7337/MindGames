@@ -1,6 +1,7 @@
 node_modules*/
 dist/
 .vite/
+/tmp/
 *.log
 .DS_Store
 desktop.ini

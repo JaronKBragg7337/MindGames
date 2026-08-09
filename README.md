@@ -8,6 +8,12 @@ window, and unfolds into a traversable portal. The current vertical slice is the
 foundation for recursive worlds, cross-reality causality, scale shifts, folding
 architecture, and variable gravity.
 
+The Reality Lab also contains a complete recursive fabrication event: a
+real-scale industrial parent printer manufactures a smaller CoreXY printer,
+which docks, powers up, and manufactures an articulated service robot. The
+sequence is deliberately bounded to one child and one robot per world for
+mobile performance, while every world continues simulating off-camera.
+
 No installation or account is needed to play the public build.
 
 ## Controls
@@ -47,6 +53,12 @@ collision bounds come from the same assemblies. Third-party textures are CC0
 assets fetched reproducibly from Poly Haven. Full source, license, physical
 scale, and checksum data lives in [`public/assets/ASSET_PROVENANCE.md`](public/assets/ASSET_PROVENANCE.md)
 and [`assets.manifest.json`](assets.manifest.json).
+
+Printer proportions and mechanical construction are grounded in official
+BigRep specifications and the open-hardware Voron V0.2r1 CAD/drawings. The
+original procedural models, exact measurements, scaling rules, and source links
+are documented in
+[`public/assets/FABRICATION_REFERENCES.md`](public/assets/FABRICATION_REFERENCES.md).
 
 ## License
 

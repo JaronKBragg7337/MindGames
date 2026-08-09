@@ -31,6 +31,10 @@ export interface BoxOptions {
   name?: string;
 }
 
+export interface ExtrusionOptions extends BoxOptions {
+  section?: number;
+}
+
 export function addRoundedBox(
   parent: Object3D,
   size: readonly [number, number, number],
@@ -70,6 +74,87 @@ export function addCylinder(
   mesh.receiveShadow = true;
   parent.add(mesh);
   return mesh;
+}
+
+/**
+ * Builds a readable T-slot rail from a structural core plus four recessed
+ * channel strips. It is intentionally assembled geometry rather than a
+ * single booleaned bar so the construction survives small-screen rendering.
+ */
+export function addTSlotExtrusion(
+  parent: Object3D,
+  length: number,
+  axis: 'x' | 'y' | 'z',
+  material: Material,
+  grooveMaterial: Material,
+  options: ExtrusionOptions = {},
+): Group {
+  const group = new Group();
+  group.name = options.name ?? `t-slot-${axis}`;
+  if (options.position) group.position.set(...options.position);
+  if (options.rotation) group.rotation.set(...options.rotation);
+  parent.add(group);
+
+  const section = options.section ?? 0.06;
+  const channelWidth = section * 0.2;
+  const channelDepth = Math.max(0.002, section * 0.045);
+  const body: [number, number, number] = [section, section, section];
+  body[axis === 'x' ? 0 : axis === 'y' ? 1 : 2] = length;
+  addRoundedBox(group, body, material, {
+    radius: section * 0.075,
+    segments: 2,
+    castShadow: options.castShadow,
+    receiveShadow: options.receiveShadow,
+  });
+
+  const grooveLength = Math.max(section, length - section * 0.7);
+  if (axis === 'x') {
+    for (const y of [-section * 0.501, section * 0.501]) {
+      addRoundedBox(group, [grooveLength, channelDepth, channelWidth], grooveMaterial, {
+        position: [0, y, 0],
+        radius: channelDepth * 0.3,
+        castShadow: false,
+      });
+    }
+    for (const z of [-section * 0.501, section * 0.501]) {
+      addRoundedBox(group, [grooveLength, channelWidth, channelDepth], grooveMaterial, {
+        position: [0, 0, z],
+        radius: channelDepth * 0.3,
+        castShadow: false,
+      });
+    }
+  } else if (axis === 'y') {
+    for (const x of [-section * 0.501, section * 0.501]) {
+      addRoundedBox(group, [channelDepth, grooveLength, channelWidth], grooveMaterial, {
+        position: [x, 0, 0],
+        radius: channelDepth * 0.3,
+        castShadow: false,
+      });
+    }
+    for (const z of [-section * 0.501, section * 0.501]) {
+      addRoundedBox(group, [channelWidth, grooveLength, channelDepth], grooveMaterial, {
+        position: [0, 0, z],
+        radius: channelDepth * 0.3,
+        castShadow: false,
+      });
+    }
+  } else {
+    for (const x of [-section * 0.501, section * 0.501]) {
+      addRoundedBox(group, [channelDepth, channelWidth, grooveLength], grooveMaterial, {
+        position: [x, 0, 0],
+        radius: channelDepth * 0.3,
+        castShadow: false,
+      });
+    }
+    for (const y of [-section * 0.501, section * 0.501]) {
+      addRoundedBox(group, [channelWidth, channelDepth, grooveLength], grooveMaterial, {
+        position: [0, y, 0],
+        radius: channelDepth * 0.3,
+        castShadow: false,
+      });
+    }
+  }
+  return group;
 }
 
 export function createFasteners(

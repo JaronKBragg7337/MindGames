@@ -15,7 +15,7 @@ import { CausalityRelay } from './assemblies/CausalityRelay';
 import { FabricatorAssembly } from './assemblies/FabricatorAssembly';
 import { PortalTerminal } from './assemblies/PortalTerminal';
 import { buildRoom, type RoomAssembly } from './assemblies/RoomAssembly';
-import { BASE_COLLIDERS, ROOM } from './layout';
+import { BASE_COLLIDERS, FABRICATION_LAYOUT, ROOM } from './layout';
 
 export type InteractionKind = 'portal' | 'enter' | 'return' | 'relay' | 'printer' | 'fold' | 'relic' | 'drop';
 
@@ -92,6 +92,12 @@ export class RealityWorld {
         size: [ROOM.portalWidth, ROOM.portalHeight, portalThickness],
         enabled: () => !this.returnTerminal.isOpen(),
       },
+      {
+        id: 'printer.child-fabricator',
+        center: FABRICATION_LAYOUT.childCenter,
+        size: FABRICATION_LAYOUT.childSize,
+        enabled: () => this.fabricator.isChildDeployed(),
+      },
     ]);
   }
 
@@ -156,7 +162,13 @@ export class RealityWorld {
     }
 
     const printerDistance = horizontalDistance(playerPosition, this.fabricator.getInteractionPosition());
-    if (printerDistance < 1.7) interactions.push({ kind: 'printer', label: 'PULSE WORLD PRINTER', distance: printerDistance });
+    if (printerDistance < 1.7) {
+      interactions.push({
+        kind: 'printer',
+        label: this.fabricator.getInteractionLabel(),
+        distance: printerDistance,
+      });
+    }
 
     const foldDistance = horizontalDistance(playerPosition, this.foldControlPosition);
     if (foldDistance < 1.55) {
@@ -187,10 +199,9 @@ export class RealityWorld {
           : 'Causality link released.';
       }
       case 'printer':
-        this.fabricator.pulse();
-        return this.config.index === 2
-          ? 'World Printer confirms persistent object RELIC–292.'
-          : 'Fabrication request forwarded deeper into the recursion.';
+        return this.fabricator.beginFabrication()
+          ? 'Recursive fabrication started: parent printer → child printer → robot unit R–01.'
+          : 'Fabrication chain is already running. Live worlds continue building when unobserved.';
       case 'fold':
         this.foldTarget = this.foldTarget > 0.5 ? 0 : 1;
         return this.foldTarget > 0.5

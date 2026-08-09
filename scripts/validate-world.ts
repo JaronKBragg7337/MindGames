@@ -1,8 +1,33 @@
 import { ASSEMBLY_NODES, BASE_COLLIDERS, ROOM } from '../src/world/layout';
+import { BIGREP_ONE, mm, VORON_V0 } from '../src/world/fabricationSpecs';
 
 const errors: string[] = [];
 const ids = new Set<string>();
 const nodes = new Map(ASSEMBLY_NODES.map((node) => [node.id, node]));
+
+const parentCollider = BASE_COLLIDERS.find((collider) => collider.id === 'printer');
+const expectedParentSize = [
+  mm(BIGREP_ONE.outerMm.width, BIGREP_ONE.mmToWorld),
+  mm(BIGREP_ONE.outerMm.height, BIGREP_ONE.mmToWorld),
+  mm(BIGREP_ONE.outerMm.depth, BIGREP_ONE.mmToWorld),
+];
+if (!parentCollider) {
+  errors.push('Measured parent-printer collider is missing.');
+} else if (parentCollider.size.some((dimension, index) => Math.abs(dimension - (expectedParentSize[index] ?? 0)) > 0.0005)) {
+  errors.push('Parent-printer collider no longer matches the official BigRep ONE.5 envelope.');
+}
+
+const scaledBuildPlate = mm(VORON_V0.buildPlateMm, VORON_V0.mmToWorld);
+const scaledChildWidth = mm(
+  VORON_V0.doorMm.width + VORON_V0.frameSectionMm * 2,
+  VORON_V0.mmToWorld,
+);
+if (scaledBuildPlate >= scaledChildWidth - mm(VORON_V0.frameSectionMm * 2, VORON_V0.mmToWorld)) {
+  errors.push('Voron-derived build plate collides with the scaled 1515 frame envelope.');
+}
+if (Math.abs(mm(VORON_V0.sidePanelMm.thickness, VORON_V0.mmToWorld) - 0.00825) > 0.000001) {
+  errors.push('Voron panel scale is no longer uniform with the manufacturing drawings.');
+}
 
 for (const node of ASSEMBLY_NODES) {
   if (ids.has(node.id)) errors.push(`Duplicate assembly id: ${node.id}`);
@@ -88,6 +113,6 @@ if (errors.length > 0) {
   throw new Error('Authored world layout is invalid.');
 } else {
   console.log(
-    `World validation passed: ${ASSEMBLY_NODES.length} supported components, ${BASE_COLLIDERS.length} colliders, ${ROOM.portalWidth.toFixed(1)}m portal clearance.`,
+    `World validation passed: ${ASSEMBLY_NODES.length} supported components, ${BASE_COLLIDERS.length} colliders, ${ROOM.portalWidth.toFixed(1)}m portal clearance, measured BigRep/Voron fabrication envelopes.`,
   );
 }
